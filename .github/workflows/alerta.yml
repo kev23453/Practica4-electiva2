@@ -1,0 +1,29 @@
+name: CI Hola Mundo + Notificacion
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Ejecutar Hola Mundo
+        run: node index.js
+
+      - name: Enviar notificacion a ntfy
+        run: |
+          curl -H "Title: 🚀 Nuevo Push en main" \
+               -H "Priority: 5" \
+               -d "Se realizó un push al repositorio ${{ github.repository }} por ${{ github.actor }}" \
+               https://ntfy.sh/devops-itla
