@@ -19,7 +19,7 @@ jobs:
           node-version: '18'
 
       - name: Ejecutar Hola Mundo
-        run: node index.js
+        run: node script.js
 
       - name: Enviar notificacion a ntfy
         run: |
